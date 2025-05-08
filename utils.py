@@ -175,7 +175,7 @@ def spx_range_report_v2(symbol='^GSPC',period='2mo',interval='1d'):
         "1 - ECDF (Percentile)": [f"{int(p * 100)}%" for p in ecdf_vals]
     })
 
-    print("\n=== SPX Range CDF vs ECDF Summary ===")
-    print(stats_df.to_markdown(index=False))
+    # print("\n=== SPX Range CDF vs ECDF Summary ===")
+    # print(stats_df.to_markdown(index=False))
 
     return report, fig
