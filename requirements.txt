@@ -6,3 +6,4 @@ matplotlib
 scipy
 plotly
 seaborn
+pytz
