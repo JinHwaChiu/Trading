@@ -5,7 +5,7 @@ import plotly.graph_objects as go
 import pandas as pd
 # your helper module
 
-st.set_page_config(page_title="VIX", layout="wide")
+st.set_page_config(page_title="SPX Range rolling std/mean", layout="wide")
 st.title("SPX Range rolling std/mean")
 
 # You can reuse your logic here
