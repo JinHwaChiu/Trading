@@ -320,7 +320,7 @@ def spx_vix_range(start_date=datetime(datetime.now().year, 1, 1),end_date=dateti
 
 ##
 
-def spx_range_in_period(period,inte):
+def spx_range_in_period(period,interval):
     
     vix = yf.download('^VIX', period=period, interval=interval)
     spy = yf.download('SPY', period=period, interval=interval)
