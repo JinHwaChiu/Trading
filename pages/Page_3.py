@@ -60,6 +60,7 @@ st.write("This is the range analysis page.")
 
 test = spx_history('^GSPC',period='12mo', interval='1h')
 test.index = test.index.tz_convert('America/Los_Angeles')
+test = only_market_close_data(test)
 cols = st.columns(2)  # Create 2 columns
 col_idx = 0           # Track which column to use
 
