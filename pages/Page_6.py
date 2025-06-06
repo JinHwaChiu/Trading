@@ -34,6 +34,8 @@ if st.sidebar.button("執行分析"):
     spx['Contraction_Flag'] = spx['Range_std_ratio'] < 0.2
     spx['Expansion_Flag'] = spx['Range_std_ratio'].pct_change() > 0.5
     
+    spx = only_market_close_data(spx)
+
     # 整理顯示用 DataFrame
     summary_df = spx[['Range', 'Range_std', 'Range_mean', 'Range_std_ratio', 'Contraction_Flag', 'Expansion_Flag']].dropna()
     
