@@ -145,9 +145,9 @@ def build_summary_table(data, dist, summary):
     return df
 
 
-def spx_range_report(data):
+def spx_range_report(data,past_few_days):
     dist, mu, sigma = fit_lognormal_distribution(data)
-    summary = calculate_summary_stats(data[-10:])
+    summary = calculate_summary_stats(data[-past_few_days:])
     fig = generate_pdf_cdf_plot(data, dist, summary)
     df = build_summary_table(data, dist, summary)
     # print("\n=== SPX Range CDF vs ECDF Summary ===")
