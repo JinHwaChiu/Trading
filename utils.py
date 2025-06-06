@@ -57,6 +57,8 @@ def spx_history(symbol, period, interval, start=None, **kwargs):
     # spx['ATR'] = spx['TR'].rolling(window=atr_period).mean()
     spx = spx.dropna(axis=0)
 
+    spx = only_market_close_data(spx)
+
     return spx
 
 def day_range_stats(days,spx):
@@ -295,7 +297,9 @@ def spx_vix_range(start_date=datetime(datetime.now().year, 1, 1),end_date=dateti
         'VIX_Close': vix[('Close', '^VIX')],
         'SPX_Range': spx['Intraday_Range']
     }).dropna()
-    
+     
+    data = only_market_close_data(data)
+
     # 定義 VIX 的分組區間
     bins = [0, 15, 20, 25, 30, 40, 100]
     labels = ['<15', '15–20', '20–25', '25–30', '30–40', '>40']
@@ -345,7 +349,7 @@ def spx_range_in_period(period,interval):
         'SPX_Range': spx['Range']
     }).dropna()
 
-    
+    df = only_market_close_data(df)
     # 計算相關係數
     vix_spy_vol_corr, _ = pearsonr(df['VIX'], df['SPY_Volume'])
     vix_spx_range_corr, _ = pearsonr(df['VIX'], df['SPX_Range'])
