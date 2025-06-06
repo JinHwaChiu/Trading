@@ -1,7 +1,7 @@
 import streamlit as st
 from utils import spx_range_report, spx_history, spx_range_pdf_cdf_by_volume_bin# your helper module
 st.set_page_config(page_title="SPX Range Analysis", layout="wide")
-st.title("📈 SPX Range Analysis")
+st.title("past 10 days in 2 month dist: (it is more sensitive to the intraday price move recently)")
 
 # You can reuse your logic here
 st.write("This is the range analysis page.")
@@ -11,13 +11,14 @@ st.sidebar.header("輸入參數")
 symbol = st.sidebar.text_input("Ticker Symbol", value="^GSPC")
 period = st.sidebar.selectbox("Period", ["5d", "1mo", "2mo", "3mo", "6mo", "1y", "2y", "5y"], index=2)
 interval = st.sidebar.selectbox("Interval", ["1d", "1h", "30m", "15m", "5m"], index=0)
+past_few_days = st.sidebar.number_input("past few days", min_value=10, step=1)
 current_range = st.sidebar.number_input("當前 High-Low Range（點數）", min_value=0.0, step=1.0)
 current_volume = st.sidebar.number_input("當前 SPY 成交量", min_value=0)
 
 # 🔘 Run button
 if st.sidebar.button("執行分析"):
     spx = spx_history(symbol,period=period, interval=interval)
-    report, fig = spx_range_report(spx['High-Low'].dropna())
+    report, fig = spx_range_report(spx['High-Low'].dropna(),past_few_days)
 
     st.subheader("SPX Intraday Range Probability Stats")
     st.pyplot(fig)
