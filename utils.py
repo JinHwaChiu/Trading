@@ -6,6 +6,17 @@ from scipy.stats import lognorm, percentileofscore
 from datetime import datetime
 import seaborn as sns
 from scipy.stats import pearsonr
+import pytz
+
+def only_market_close_data(data):
+     # 檢查是否過了美股收盤時間（通常是 16:00 EST）
+    now = datetime.now(pytz.timezone("America/Los_Angeles"))
+    today = pd.to_datetime(datetime.now().date())
+    market_closed = now.hour > 13 or (now.hour == 13 and now.minute >= 10)
+    # 如果還沒收盤，就移除今天的資料
+    if not market_closed:
+        return data[data.index < today]
+    return data
 
 def spx_history(symbol, period, interval, start=None, **kwargs): 
     if start:
