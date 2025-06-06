@@ -3,7 +3,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from scipy.stats import lognorm
 import streamlit as st
-from utils import spx_history,single_bar_stats,day_range_stats
+from utils import spx_history,single_bar_stats,day_range_stats, only_market_close_data
 
 
 def intraday_period_range(data,time):
